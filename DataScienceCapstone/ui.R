@@ -1,4 +1,11 @@
+#installing packages
 library(shiny)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(data.table)
+library(readtext)
+library(stringr)
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(

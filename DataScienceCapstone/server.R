@@ -1,19 +1,18 @@
+#installing packages
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(data.table)
+library(readtext)
+library(stringr)
 
 shinyServer(function(input, output) {
   
-  #installing packages
-  packages <- c("knitr", "dplyr", "ggplot2", "data.table", "quanteda", "readtext", "quanteda.textstats", "stringr", "caret")
-  
-  #loading packages
-  invisible(lapply(packages,
-                   library,
-                   character.only = TRUE))
-  
   ## Reading the Data
-  unigrams <- readRDS("../data/unigram.rds")
-  bigrams <- readRDS("../data/bigram.rds")
-  trigrams <- readRDS("../data/trigram.rds")
-  quadgrams <- readRDS("../data/quadgram.rds")
+  unigrams <- readRDS("./data/unigram.rds")
+  bigrams <- readRDS("./data/bigram.rds")
+  trigrams <- readRDS("./data/trigram.rds")
+  quadgrams <- readRDS("./data/quadgram.rds")
   
   ## Prediction function
   predict.word <- function(phrase){
@@ -29,7 +28,7 @@ shinyServer(function(input, output) {
       if(word1 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
          word2 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
          word3 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits")) {
-return(rep("Please do not use profanities!",3))
+        return(rep("Please do not use profanities!",3))
       } else if (!is.na(quadgrams[ngram %like% paste0("^", word1, " ", word2, " ", word3, " "),1][1])){
         quadgrams[ngram %like% paste0("^", word1, " ", word2, " ", word3, " "),1][1] -> ng
         return(c(str_split(ng[1], " ")[[1]][4],str_split(ng[2], " ")[[1]][4],str_split(ng[3], " ")[[1]][4]))
@@ -52,7 +51,7 @@ return(rep("Please do not use profanities!",3))
       if(word1 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
          word2 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
          word3 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits")) {
-return(rep("Please do not use profanities!",3))
+        return(rep("Please do not use profanities!",3))
       } else if (!is.na(trigrams[ngram %like% paste0("^", word2, " ", word3, " "),1][1])){
         trigrams[ngram %like% paste0("^", word2, " ", word3, " "),1] -> ng
         return(c(str_split(ng[1], " ")[[1]][3],str_split(ng[2], " ")[[1]][3],str_split(ng[3], " ")[[1]][3]))
@@ -95,7 +94,7 @@ return(rep("Please do not use profanities!",3))
       if(word1 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
          word2 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
          word3 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits")) {
-return(rep("Please do not use profanities!",3))
+        return(rep("Please do not use profanities!",3))
       } else if (!is.na(quadgrams[ngram %like% paste0("^", word1, " ", word2, " ", word3, " "),1][1])){
         head(quadgrams[ngram %like% paste0("^", word1, " ", word2, " ", word3, " "),c(1,3)][1], 20) -> plot_data
         plot_data %>%
@@ -139,7 +138,7 @@ return(rep("Please do not use profanities!",3))
       if(word1 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
          word2 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
          word3 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits")) {
-return(rep("Please do not use profanities!",3))
+        return(rep("Please do not use profanities!",3))
       } else if (!is.na(trigrams[ngram %like% paste0("^", word2, " ", word3, " "),1][1])){
         head(trigrams[ngram %like% paste0("^", word2, " ", word3, " "),c(1,3)], 20) -> plot_data
         plot_data %>%
@@ -172,7 +171,7 @@ return(rep("Please do not use profanities!",3))
       if(word1 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
          word2 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
          word3 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits")) {
-return(rep("Please do not use profanities!",3))
+        return(rep("Please do not use profanities!",3))
       } else if (!is.na(bigrams[ngram %like% paste0("^", word3, " "),1][1])){
         head(bigrams[ngram %like% paste0("^", word3, " "),c(1,3)],20) -> plot_data
         plot_data %>%
