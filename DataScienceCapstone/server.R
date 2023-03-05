@@ -48,8 +48,7 @@ shinyServer(function(input, output) {
       word2 <- str_split(phrase, " ")[[1]][n-1]
       word3 <- str_split(phrase, " ")[[1]][n]
       
-      if(word1 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
-         word2 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
+      if(word2 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
          word3 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits")) {
         return(rep("Please do not use profanities!",3))
       } else if (!is.na(trigrams[ngram %like% paste0("^", word2, " ", word3, " "),1][1])){
@@ -67,9 +66,7 @@ shinyServer(function(input, output) {
       
       word3 <- str_split(phrase, " ")[[1]][n]
       
-      if(word1 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
-         word2 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
-         word3 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits")) {
+      if(word3 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits")) {
         return(rep("Please do not use profanities!",3))
       } else if (!is.na(bigrams[ngram %like% paste0("^", word3, " "),1][1])){
         bigrams[ngram %like% paste0("^", word3, " "),1] -> ng
@@ -135,8 +132,7 @@ shinyServer(function(input, output) {
       word2 <- str_split(phrase, " ")[[1]][n-1]
       word3 <- str_split(phrase, " ")[[1]][n]
       
-      if(word1 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
-         word2 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
+      if(word2 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
          word3 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits")) {
         return(rep("Please do not use profanities!",3))
       } else if (!is.na(trigrams[ngram %like% paste0("^", word2, " ", word3, " "),1][1])){
@@ -168,9 +164,7 @@ shinyServer(function(input, output) {
       
       word3 <- str_split(phrase, " ")[[1]][n]
       
-      if(word1 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
-         word2 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits") | 
-         word3 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits")) {
+      if(word3 %in% c("shit", "piss", "fuck", "cunt", "cocksucker", "motherfucker", "tits")) {
         return(rep("Please do not use profanities!",3))
       } else if (!is.na(bigrams[ngram %like% paste0("^", word3, " "),1][1])){
         head(bigrams[ngram %like% paste0("^", word3, " "),c(1,3)],20) -> plot_data
